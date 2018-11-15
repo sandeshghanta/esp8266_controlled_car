@@ -3,7 +3,6 @@
 #include "Adafruit_MQTT_Client.h"
 
 #define enablepin D0
-//*****************************************
 //Right part
 //motor A
 #define pinfr1 D1
@@ -11,8 +10,6 @@
 // motor B
 #define pinbr1 D3
 #define pinbr2 D4
-//*****************************************
-//*****************************************
 //Left part
 // motor C
 #define pinfl1 D5
@@ -21,14 +18,14 @@
 #define pinbl1 D7
 #define pinbl2 D8
 
-#define WIFI_SSID "peek a boo"
-#define WIFI_PASS "cheppanu"
+#define WIFI_SSID "wifiname"
+#define WIFI_PASS "wifipassword"
  
 #define MQTT_SERV "io.adafruit.com"
 #define MQTT_PORT 1883
 
-#define MQTT_NAME "sandeshghanta"
-#define MQTT_PASS "05e410e70382494c84301573eb7cb532"
+#define MQTT_NAME "mqtt-username"
+#define MQTT_PASS "mqtt-password"
  
 //Set up MQTT and WiFi clients
 WiFiClient client;
@@ -65,7 +62,7 @@ void setup()
  
   Serial.println("OK!");
  
-  //Subscribe to the onoff feed
+  //Subscribe to the voice feed
   mqtt.subscribe(&voice);
 }
 void accelerate(){
@@ -141,24 +138,19 @@ void loop()
   Adafruit_MQTT_Subscribe * subscription;
   while ((subscription = mqtt.readSubscription(1000)))
   {
-    Serial.println("In while loop");
     //If we're in here, a subscription updated...
     if (subscription == &voice)
     {
       //Print the new value to the serial monitor
       Serial.println((char*) voice.lastread);
-      
-      //If the new value is  "ON", turn the light on.
-      //Otherwise, turn it off.
       if (!strcmp((char*) voice.lastread, "13"))
       {
-        //Active low logic
-  //back
+        //back
         back();
       }
       else if (!strcmp((char*) voice.lastread, "5"))
       {
-  //forward
+        //forward
         front();
       }
       else if (!strcmp((char*) voice.lastread, "10")){
@@ -170,10 +162,11 @@ void loop()
         left();
       }
       else if(!strcmp((char*) voice.lastread, "9")){
+        //stop
         stop();
       }
       else{
-        Serial.println("Did not read anything");
+        Serial.println("Invalid Input");
       }
     }
   }
@@ -184,25 +177,6 @@ void loop()
     mqtt.disconnect();
   }
 }
- 
- 
-/***************************************************
-  Adafruit MQTT Library ESP8266 Example
- 
-  Must use ESP8266 Arduino from:
-    https://github.com/esp8266/Arduino
- 
-  Works great with Adafruit's Huzzah ESP board & Feather
-  ----> https://www.adafruit.com/product/2471
-  ----> https://www.adafruit.com/products/2821
- 
-  Adafruit invests time and resources providing this open source code,
-  please support Adafruit and open-source hardware by purchasing
-  products from Adafruit!
- 
-  Written by Tony DiCola for Adafruit Industries.
-  MIT license, all text above must be included in any redistribution
- ****************************************************/
  
 void MQTT_connect() 
 {
