@@ -1,11 +1,11 @@
 # ESP8266_controlled_car
 This project is part of our IoT elective. This project provides an ESP8266 enabled DIY car which can be controlled using laptop or voice commands.
 ### Use case of the project:
-The project aims at solving the issue of reaching un-reachable places. Home automation can easily be ported to this project with suitable changes in the hardware.  
+The project aims at solving the issue of reaching un-reachable places. Home automation can easily be ported to this project with suitable changes in the hardware.
 ### Potential Users
 Anyone who is facing the issue of tracking/surveying a large area with limited manpower can easily modify this project to track whatever is necessary
 ### Brief Technical Description
-We can control an ordinary DIY car using a laptop or using voice commands. We will be sending instructions to the car via WiFi. This increases the range in which the car can be operated.   
+This project aims at imparting a DIY car with the ability to be controlled using laptop or voice commands. Both voice and laptop instructions are sent to the ESP8266 module on the car which acts a controller of the car. The ESP8266 module controls the 4 BO motors attached to the wheel via L298n H-bridge motor drivers. We are using UDP protocol to communicate between the laptop and the esp module. A MQTT protocol was used to send instructions in voice mode.    
 ### Contributors
 * Srivatsav Gunisetty AM.EN.U4CSE16028
   * Contribution to the project
