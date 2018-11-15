@@ -5,7 +5,7 @@
 #include <ESP8266mDNS.h>
 
 #define enablepin D0
-//*****************************************
+
 //Right part
 //motor A
 #define pinfr1 D1
@@ -13,8 +13,6 @@
 // motor B
 #define pinbr1 D3
 #define pinbr2 D4
-//*****************************************
-//*****************************************
 //Left part
 // motor C
 #define pinfl1 D5
