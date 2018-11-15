@@ -122,6 +122,16 @@ void right(){
   accelerate();
   delay(30);
 }
+void stop(){
+  digitalWrite(pinfr2, LOW);
+  digitalWrite(pinbr2, LOW);
+  digitalWrite(pinfl2, LOW);
+  digitalWrite(pinbl2, LOW);
+  digitalWrite(pinfr1, LOW);
+  digitalWrite(pinbr1, LOW);
+  digitalWrite(pinfl1, LOW);
+  digitalWrite(pinbl1, LOW);
+}
 void loop()
 {
   MQTT_connect();
@@ -158,6 +168,9 @@ void loop()
       else if (!strcmp((char*) voice.lastread, "8")){
         //left
         left();
+      }
+      else if(!strcmp((char*) voice.lastread, "9")){
+        stop();
       }
       else{
         Serial.println("Did not read anything");
