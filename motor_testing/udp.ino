@@ -6,8 +6,6 @@ long time_udp_call;
 bool udp_call;
 char line[5];
 
-//---------------------------------------
-
 void UDPSetup(){
   strcpy(line,"true");
   Udp.begin(localUdpPort);
@@ -18,13 +16,8 @@ void UDPLoop(){
   StaticJsonBuffer<200> js;
   int packetSize = Udp.parsePacket();
     int len = Udp.read(incomingPacket, 255);
-    /*if (len > 0){
-      incomingPacket[len] = 0;
-    }
-    Serial.printf("UDP: %s\n", incomingPacket);*/
     JsonObject& root = js.parseObject(incomingPacket);
     if(!root.success()){
-      //Serial.println("Parsing Failed!");
       return;
     }
     else{
